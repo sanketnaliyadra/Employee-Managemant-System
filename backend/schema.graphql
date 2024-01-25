@@ -1,0 +1,54 @@
+scalar GraphQlDateType
+
+type Employee {
+  id: String
+  firstName: String
+  lastName: String
+  age: Int
+  dateOfJoining: String
+  title: String
+  department: String
+  currentStatus: Boolean
+  employeeType: String
+}
+
+input EmployeeInputs {
+  firstName: String
+  lastName: String
+  age: Int
+  dateOfJoining: String
+  title: String
+  department: String
+  currentStatus: Boolean
+  employeeType: String
+}
+
+type UpcomingRetirementEmployee {
+  id: String
+  firstName: String
+  lastName: String
+  age: Int
+  dateOfJoining: String
+  title: String
+  department: String
+  currentStatus: Boolean
+  employeeType: String
+  yearsLeftUntilRetirement: Int
+  monthsLeftUntilRetirement: Int
+  daysLeftUntilRetirement: Int
+}
+
+type Query {
+  name: String
+  employeeList: [Employee]
+  employeeById(id: ID!): Employee
+  upcomingRetirement(employeeType: String): [UpcomingRetirementEmployee]
+
+}
+
+type Mutation { 
+  sendName(name: String): String
+  employeeAdd(employee: EmployeeInputs): Employee
+  deleteEmployee(id: ID!): Boolean
+  employeeEdit(id: ID!, updatedEmployee: EmployeeInputs): Boolean
+}
